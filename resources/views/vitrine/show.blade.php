@@ -1,0 +1,33 @@
+@extends('layouts.app')
+
+@section('conteudo')
+<div class="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 max-w-4xl mx-auto mt-6">
+    <div class="md:flex">
+        <div class="md:w-1/2">
+            <img class="h-full w-full object-cover min-h-[350px]" src="{{ $animal->foto_url ?? 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=500' }}" alt="{{ $animal->nome }}">
+        </div>
+        <div class="p-8 md:w-1/2 flex flex-col justify-between">
+            <div>
+                <span class="text-xs font-bold uppercase tracking-wide inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full mb-4">{{ $animal->especie }}</span>
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $animal->nome }}</h1>
+                <p class="text-sm text-gray-500 mb-4">Porte: <strong>{{ $animal->porte }}</strong> | Idade: <strong>{{ $animal->idade }}</strong></p>
+                <hr class="my-4">
+                <p class="text-gray-700 leading-relaxed">{{ $animal->descricao }}</p>
+            </div>
+            
+            <div class="mt-8">
+                @auth
+                    @if(Auth::user()->eCandidato())
+                        <a href="{{ route('adocao.formulario', $animal->id) }}" class="block text-center bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-indigo-700 shadow-md transition">Quero Adotar o {{ $animal->nome }}</a>
+                    @else
+                        <div class="p-3 bg-yellow-50 border border-yellow-200 text-yellow-800 text-sm rounded-lg text-center font-medium">Administradores visualizam este perfil em modo de leitura.</div>
+                    @endif
+                @else
+                    <a href="{{ route('login') }}" class="block text-center bg-red-500 text-white font-bold py-3 px-4 rounded-xl hover:bg-red-600 shadow-md transition">Faça login para manifestar interesse na adoção</a>
+                    <p class="text-xs text-gray-400 text-center mt-2">🔒 Restrito a usuários cadastrados por questões de segurança socioambiental.</p>
+                @endauth
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
