@@ -25,10 +25,10 @@ class VitrineController extends Controller
             $query->where('porte', $request->porte);
         }
 
-        // Pega os animais ordenados pelos mais recentes
+        // animais ordenados pelos mais recentes
         $animais = $query->latest()->get();
 
-        // AJUSTADO AQUI: Caminho alterado para apontar para a sua pasta 'vitrine.index'
+        // Caminho para apontar para a sua pasta 'vitrine.index'
         return view('vitrine.index', compact('animais'));
     }
 
@@ -39,7 +39,7 @@ class VitrineController extends Controller
     {
         $animal = Animal::findOrFail($id);
         
-        // AJUSTADO AQUI: Caminho alterado para apontar para a sua pasta 'vitrine.show'
+        // Caminho para apontar para a sua pasta 'vitrine.show'
         return view('vitrine.show', compact('animal'));
     }
 }

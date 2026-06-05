@@ -19,7 +19,7 @@ return new class extends Migration
             // Alterado de string para text para aceitar links gigantes da internet
             $table->text('foto_url')->nullable();
             
-            $table->string('status')->default('disponivel'); // disponivel, em_triagem, adotado
+            $table->string('status')->default('disponivel'); 
             $table->timestamps();
         });
     }

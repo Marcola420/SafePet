@@ -2,97 +2,70 @@
 
 @section('conteudo')
 
-    <!-- 🔐 CABEÇALHO DE LOGIN/CADASTRO -->
-    <div class="max-w-6xl mx-auto px-4 pt-4 flex justify-end items-center gap-4">
-        @auth
-            <!-- Se estiver logado, mostra o botão do Painel -->
-            <a href="{{ Auth::user()->tipo_acesso === 'admin' ? route('admin.triagem') : route('candidato.painel') }}" 
-               class="font-semibold text-gray-600 hover:text-indigo-600 transition flex items-center gap-2">
-                <span>👤 Meu Painel</span>
-            </a>
-        @else
-            <!-- Se NÃO estiver logado, mostra Entrar e Cadastrar -->
-            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-indigo-600 transition">
-                Entrar
-            </a>
-            <a href="{{ route('cadastro') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-xl shadow-sm transition">
-                Criar Conta
-            </a>
-        @endauth
-    </div>
-
-    <!-- 🌟 CONTEÚDO PRINCIPAL -->
     <div class="max-w-6xl mx-auto mt-6 space-y-8">
 
-        <!-- 🎛️ HUB DE SERVIÇOS SAFEPET -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4">
             
-            <a href="{{ route('vitrine.index') }}" class="bg-white border border-gray-200 hover:border-pink-300 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group bg-gradient-to-b hover:from-white hover:to-pink-50/30">
+            <a href="{{ route('vitrine.index') }}" class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-pink-300 dark:hover:border-pink-500 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group bg-gradient-to-b from-white to-white dark:from-gray-800 dark:to-gray-800 hover:to-pink-50/30 dark:hover:to-pink-950/20">
                 <span class="text-4xl group-hover:scale-110 transition duration-200">🐶🐱</span>
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 mt-3">Adotar</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200 mt-3">Adotar</span>
             </a>
 
-            <!-- Novos links dinâmicos da Comunidade -->
-            <a href="{{ route('comunidade.ver', 'doar') }}" class="bg-white border border-gray-200 hover:border-amber-300 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group bg-gradient-to-b hover:from-white hover:to-amber-50/30">
+            <a href="{{ route('comunidade.ver', 'doar') }}" class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-amber-300 dark:hover:border-amber-500 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group bg-gradient-to-b from-white to-white dark:from-gray-800 dark:to-gray-800 hover:to-amber-50/30 dark:hover:to-amber-950/20">
                 <span class="text-4xl group-hover:scale-110 transition duration-200">📢</span>
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 mt-3">Doar</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200 mt-3">Doar</span>
             </a>
 
-            <a href="{{ route('comunidade.ver', 'perdi') }}" class="bg-white border border-gray-200 hover:border-red-300 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group bg-gradient-to-b hover:from-white hover:to-red-50/30">
+            <a href="{{ route('comunidade.ver', 'perdi') }}" class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-red-300 dark:hover:border-red-500 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group bg-gradient-to-b from-white to-white dark:from-gray-800 dark:to-gray-800 hover:to-red-50/30 dark:hover:to-red-950/20">
                 <span class="text-4xl group-hover:scale-110 transition duration-200">🔍🐾</span>
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 mt-3">Perdi um Pet</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200 mt-3">Perdi um Pet</span>
             </a>
 
-            <a href="{{ route('comunidade.ver', 'encontrei') }}" class="bg-white border border-gray-200 hover:border-blue-300 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group bg-gradient-to-b hover:from-white hover:to-blue-50/30">
+            <a href="{{ route('comunidade.ver', 'encontrei') }}" class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group bg-gradient-to-b from-white to-white dark:from-gray-800 dark:to-gray-800 hover:to-blue-50/30 dark:hover:to-blue-950/20">
                 <span class="text-4xl group-hover:scale-110 transition duration-200">🧐🧭</span>
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 mt-3">Encontrei um Pet</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200 mt-3">Encontrei um Pet</span>
             </a>
 
-            <a href="{{ route('ongs') }}" class="bg-white border border-gray-200 hover:border-emerald-300 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group col-span-2 sm:col-span-1 bg-gradient-to-b hover:from-white hover:to-emerald-50/30">
+            <a href="{{ route('ongs') }}" class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-emerald-300 dark:hover:border-emerald-500 hover:shadow-md rounded-2xl p-4 flex flex-col items-center justify-center text-center transition duration-200 group col-span-2 sm:col-span-1 bg-gradient-to-b from-white to-white dark:from-gray-800 dark:to-gray-800 hover:to-emerald-50/30 dark:hover:to-emerald-950/20">
                 <span class="text-4xl group-hover:scale-110 transition duration-200">🏥🏡</span>
-                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 mt-3">ONGs</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200 mt-3">ONGs</span>
             </a>
 
         </div>
 
-        <!-- 🏠 CABEÇALHO DA VITRINE -->
         <div class="text-center space-y-2 mt-8">
-            <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight">Encontre seu novo melhor amigo 🐾</h1>
-            <p class="text-gray-500 max-w-md mx-auto text-sm">Todos os pets do SafePet são vermifugados, vacinados e estão à espera de um lar amoroso.</p>
+            <h1 class="text-3xl font-extrabold text-gray-800 dark:text-white tracking-tight">Encontre seu novo melhor amigo 🐾</h1>
+            <p class="text-gray-500 dark:text-gray-400 max-w-md mx-auto text-sm">Todos os pets do SafePet são vermifugados, vacinados e estão à espera de um lar amoroso.</p>
         </div>
 
-        <!-- 🔍 BARRA DE FILTROS INTELIGENTES -->
-        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mx-4">
+        <div class="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 mx-4 transition-colors duration-300">
             <form action="{{ route('vitrine.index') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
                 
-                <!-- Filtro por Espécie -->
                 <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Espécie</label>
-                    <select name="especie" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-sm font-medium text-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none">
-                        <option value="">Todos os animais</option>
-                        <option value="Cachorro" {{ request('especie') == 'Cachorro' ? 'selected' : '' }}>🐶 Cachorros</option>
-                        <option value="Gato" {{ request('especie') == 'Gato' ? 'selected' : '' }}>🐱 Gatos</option>
+                    <label class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-1 ml-1">Espécie</label>
+                    <select name="especie" class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl p-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-colors duration-300">
+                        <option value="" class="dark:bg-gray-700">Todos os animais</option>
+                        <option value="Cachorro" {{ request('especie') == 'Cachorro' ? 'selected' : '' }} class="dark:bg-gray-700">🐶 Cachorros</option>
+                        <option value="Gato" {{ request('especie') == 'Gato' ? 'selected' : '' }} class="dark:bg-gray-700">🐱 Gatos</option>
                     </select>
                 </div>
 
-                <!-- Filtro por Porte -->
                 <div>
-                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Porte</label>
-                    <select name="porte" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-sm font-medium text-gray-700 focus:ring-2 focus:ring-indigo-500 outline-none">
-                        <option value="">Todos os tamanhos</option>
-                        <option value="Pequeno" {{ request('porte') == 'Pequeno' ? 'selected' : '' }}>Pequeno</option>
-                        <option value="Médio" {{ request('porte') == 'Médio' ? 'selected' : '' }}>Médio</option>
-                        <option value="Grande" {{ request('porte') == 'Grande' ? 'selected' : '' }}>Grande</option>
+                    <label class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-1 ml-1">Porte</label>
+                    <select name="porte" class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl p-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-colors duration-300">
+                        <option value="" class="dark:bg-gray-700">Todos os tamanhos</option>
+                        <option value="Pequeno" {{ request('porte') == 'Pequeno' ? 'selected' : '' }} class="dark:bg-gray-700">Pequeno</option>
+                        <option value="Médio" {{ request('porte') == 'Médio' ? 'selected' : '' }} class="dark:bg-gray-700">Médio</option>
+                        <option value="Grande" {{ request('porte') == 'Grande' ? 'selected' : '' }} class="dark:bg-gray-700">Grande</option>
                     </select>
                 </div>
 
-                <!-- Botões de Ação -->
                 <div class="flex gap-2">
-                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold p-2.5 rounded-xl text-sm shadow-sm transition">
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold p-2.5 rounded-xl text-sm shadow-sm transition duration-300">
                         Filtrar Pets
                     </button>
                     @if(request('especie') || request('porte'))
-                        <a href="{{ route('vitrine.index') }}" class="bg-gray-100 hover:bg-gray-200 text-gray-600 font-semibold p-2.5 rounded-xl text-sm transition flex items-center justify-center" title="Limpar Filtros">
+                        <a href="{{ route('vitrine.index') }}" class="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-300 font-semibold p-2.5 rounded-xl text-sm transition flex items-center justify-center" title="Limpar Filtros">
                             ✕
                         </a>
                     @endif
@@ -100,43 +73,39 @@
             </form>
         </div>
 
-        <!-- 🐕 GRID DE ANIMAIS -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mx-4">
             @forelse($animais as $animal)
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition duration-300 flex flex-col justify-between group">
+                <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition duration-300 flex flex-col justify-between group">
                     <div>
-                        <!-- Foto -->
-                        <div class="overflow-hidden relative h-52 bg-gray-100">
+                        <div class="overflow-hidden relative h-52 bg-gray-100 dark:bg-gray-900">
                             <img src="{{ $animal->foto_url }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-3 right-3 bg-white bg-opacity-90 text-gray-800 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
+                            <span class="absolute top-3 right-3 bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 text-gray-800 dark:text-gray-200 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
                                 {{ $animal->porte }}
                             </span>
                         </div>
 
-                        <!-- Informações -->
                         <div class="p-5 space-y-2">
                             <div class="flex justify-between items-center">
-                                <h2 class="text-xl font-bold text-gray-800">{{ $animal->nome }}</h2>
-                                <span class="text-sm font-semibold text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded-md">
+                                <h2 class="text-xl font-bold text-gray-800 dark:text-white">{{ $animal->nome }}</h2>
+                                <span class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/50 px-2 py-0.5 rounded-md">
                                     {{ $animal->idade }}
                                 </span>
                             </div>
-                            <p class="text-gray-500 text-sm line-clamp-2">{{ $animal->descricao }}</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm line-clamp-2">{{ $animal->descricao }}</p>
                         </div>
                     </div>
 
-                    <!-- Botão -->
                     <div class="p-5 pt-0">
-                        <a href="{{ route('vitrine.show', $animal->id) }}" class="block w-full text-center bg-gray-50 hover:bg-indigo-600 hover:text-white border border-gray-100 text-gray-700 font-bold py-3 rounded-2xl text-sm transition duration-200">
+                        <a href="{{ route('vitrine.show', $animal->id) }}" class="block w-full text-center bg-gray-50 dark:bg-gray-700 hover:bg-indigo-600 dark:hover:bg-indigo-500 hover:text-white dark:hover:text-white border border-gray-100 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-bold py-3 rounded-2xl text-sm transition duration-200">
                             Conhecer História ➔
                         </a>
                     </div>
                 </div>
             @empty
-                <div class="col-span-full bg-gray-50 text-center p-12 rounded-3xl border border-dashed border-gray-200 space-y-2">
+                <div class="col-span-full bg-gray-50 dark:bg-gray-800/50 text-center p-12 rounded-3xl border border-dashed border-gray-200 dark:border-gray-700 space-y-2 transition-colors duration-300">
                     <span class="text-4xl">😿</span>
-                    <h3 class="text-gray-700 font-bold text-lg">Nenhum pet encontrado</h3>
-                    <p class="text-gray-400 text-sm max-w-xs mx-auto">Não encontramos nenhum animalzinho com essas características exatas no momento.</p>
+                    <h3 class="text-gray-700 dark:text-gray-300 font-bold text-lg">Nenhum pet encontrado</h3>
+                    <p class="text-gray-400 dark:text-gray-500 text-sm max-w-xs mx-auto">Não encontramos nenhum animalzinho com essas características exatas no momento.</p>
                 </div>
             @endforelse
         </div>

@@ -20,10 +20,7 @@ class CandidatoController extends Controller
         return view('candidato.painel', compact('solicitacoes'));
     }
 
-    /**
-     * AJUSTADO AQUI: Nome alterado para bater exatamente com a sua rota (routes/web.php)
-     * Exibe a tela do formulário socioambiental para um pet específico.
-     */
+    
     public function formularioAdocao($animal_id)
     {
         $animal = Animal::findOrFail($animal_id);

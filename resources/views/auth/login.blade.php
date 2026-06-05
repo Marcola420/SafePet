@@ -1,6 +1,4 @@
 @extends('layouts.app')
-
-@block('conteudo')
 @section('conteudo')
 <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-md border border-gray-100 mt-12">
     <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Acesse sua Conta</h2>
