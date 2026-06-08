@@ -31,6 +31,7 @@
         </button>
     </form>
     
+
     {{-- Links de navegação inferiores organizados --}}
     <div class="mt-6 space-y-3 text-center text-sm">
         <p class="text-gray-600 dark:text-gray-400 transition-colors duration-300">
@@ -40,11 +41,17 @@
             </a>
         </p>
         
-        <p>
+        <p class="space-x-2">
             <a href="{{ route('password.request') }}" class="text-indigo-600 dark:text-indigo-400 hover:underline text-xs bg-gray-50 dark:bg-gray-900/50 py-1 px-3 rounded-full inline-block border border-gray-100 dark:border-gray-800 transition duration-300">
                 Esqueceu sua senha?
             </a>
         </p>
+
+        {{-- Links Institucionais/Legais --}}
+        <div class="pt-2 flex justify-center space-x-4 text-xs text-gray-400 dark:text-gray-500">
+            <a href="{{ route('termos') }}" class="hover:underline">Termos de Serviço</a>
+            <span>•</span>
+            <a href="{{ route('politica') }}" class="hover:underline">Política de Privacidade</a>
+        </div>
     </div>
-</div>
 @endsection

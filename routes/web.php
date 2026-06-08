@@ -8,7 +8,19 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
-// Rotas para recuperar a senha (certifique-se de que salvou isso aqui)
+
+//página de Política de Privacidade
+Route::get('/politica-de-privacidade', function () {
+    return view('paginas.politica');
+})->name('politica');
+
+
+//página de Termos de Serviço
+Route::get('/termos-de-servico', function () {
+    return view('paginas.termos');
+})->name('termos');
+
+// Rotas para recuperar a senha 
 Route::get('/esqueceu-senha', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/esqueceu-senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('/redefinir-senha/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
