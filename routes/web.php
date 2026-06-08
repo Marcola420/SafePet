@@ -6,8 +6,13 @@ use App\Http\Controllers\VitrineController;
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnuncioController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
-
+// Rotas para recuperar a senha (certifique-se de que salvou isso aqui)
+Route::get('/esqueceu-senha', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/esqueceu-senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/redefinir-senha/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/redefinir-senha', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
 
 Route::get('/', [VitrineController::class, 'index'])->name('vitrine.index');
 Route::get('/animal/{id}', [VitrineController::class, 'show'])->name('vitrine.show');
