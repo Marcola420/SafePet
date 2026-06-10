@@ -29,7 +29,7 @@
             <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">Criar Novo Anúncio</h2>
             
             @auth
-                <form action="{{ route('comunidade.salvar', $tipo) }}" method="POST" class="space-y-3 text-sm">
+                <form action="{{ route('comunidade.salvar', $tipo) }}" method="POST" enctype="multipart/form-data" class="space-y-3 text-sm">
                     @csrf
                     <div>
                         <label class="block text-gray-600 dark:text-gray-300 font-medium mb-1">Nome do Pet (opcional)</label>
@@ -38,7 +38,7 @@
 
                     <div>
                         <label class="block text-gray-600 dark:text-gray-300 font-medium mb-1">Espécie</label>
-                        <select name="especie" class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300" Rajput>
+                        <select name="especie" class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300">
                             <option value="Cachorro">🐶 Cachorro</option>
                             <option value="Gato">🐱 Gato</option>
                         </select>
@@ -55,8 +55,24 @@
                     </div>
 
                     <div>
-                        <label class="block text-gray-600 dark:text-gray-300 font-medium mb-1">Link da Foto (URL)</label>
-                        <input type="url" name="foto_url" class="w-full border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300" placeholder="https://...">
+                        <label class="block text-gray-600 dark:text-gray-300 font-medium mb-1">Foto do Pet</label>
+                        
+                        {{-- ALTERAÇÃO: Criamos uma BOX customizada e interativa para o upload da foto --}}
+                        <label class="relative flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl cursor-pointer bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-indigo-500 dark:hover:border-indigo-400 transition-all duration-300 group">
+                            
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6 text-center px-2">
+                                <span class="text-2xl mb-1 group-hover:scale-110 transition-transform duration-300">📸</span>
+                                <p class="mb-1 text-sm text-gray-500 dark:text-gray-300 font-semibold" id="texto-upload">
+                                    Selecionar foto
+                                </p>
+                                <p class="text-xs text-gray-400 dark:text-gray-400">
+                                    Clique para escolher do dispositivo (Max: 2MB)
+                                </p>
+                            </div>
+
+                            {{-- O input original fica invisível (sr-only), mas funciona quando clicam na Box acima --}}
+                            <input type="file" name="foto_url" id="input-foto" accept="image/*" class="sr-only" onchange="atualizarNomeArquivo(this)">
+                        </label>
                     </div>
 
                     <div>
@@ -80,7 +96,15 @@
             
             @forelse($anuncios as $a)
                 <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm flex flex-col sm:flex-row gap-4 items-center transition-colors duration-300">
-                    <img src="{{ $a->foto_url }}" class="w-24 h-24 object-cover rounded-xl shadow-inner flex-shrink-0">
+                    
+                    @if($a->foto_url && (Str::startsWith($a->foto_url, 'http://') || Str::startsWith($a->foto_url, 'https://')))
+                        <img src="{{ $a->foto_url }}" class="w-24 h-24 object-cover rounded-xl shadow-inner flex-shrink-0">
+                    @elseif($a->foto_url)
+                        <img src="{{ asset('storage/' . $a->foto_url) }}" class="w-24 h-24 object-cover rounded-xl shadow-inner flex-shrink-0">
+                    @else
+                        <div class="w-24 h-24 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🐾</div>
+                    @endif
+
                     <div class="space-y-1 w-full">
                         <div class="flex justify-between items-start">
                             <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg">
@@ -106,4 +130,18 @@
     </div>
 
 </div>
+
+{{-- SCRIPT ADICIONADO: Esse pequeno código Javascript serve para trocar o texto "Selecionar foto" pelo nome real do arquivo que o usuário escolheu, dando um feedback bem legal! --}}
+<script>
+    function atualizarNomeArquivo(input) {
+        const textoUpload = document.getElementById('texto-upload');
+        if (input.files && input.files.length > 0) {
+            textoUpload.textContent = "📁 " + input.files[0].name;
+            textoUpload.classList.add('text-indigo-600', 'dark:text-indigo-400');
+        } else {
+            textoUpload.textContent = "Selecionar foto";
+            textoUpload.classList.remove('text-indigo-600', 'dark:text-indigo-400');
+        }
+    }
+</script>
 @endsection
