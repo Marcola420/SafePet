@@ -16,16 +16,29 @@ class AdminController extends Controller
     }
 
     public function salvarAnimal(Request $request) {
+        // Validação alterada para ler arquivos físicos do computador
         $dados = $request->validate([
             'nome' => 'required|string|max:255',
             'especie' => 'required|string',
             'idade' => 'required|string',
             'porte' => 'required|string',
             'descricao' => 'required|string',
-            'foto_url' => 'nullable|url'
+            'foto_url' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048' // Aceita imagens até 2MB
         ]);
 
+        // URL padrão caso não envie nada
+        $caminhoFoto = 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500'; 
+
+        // Processa o upload do arquivo e envia para 'storage/app/public/animais'
+        if ($request->hasFile('foto_url') && $request->file('foto_url')->isValid()) {
+            $caminhoFoto = $request->file('foto_url')->store('animais', 'public');
+        }
+
+        // Sobrescreve o dado de 'foto_url' com o caminho local ou o padrão
+        $dados['foto_url'] = $caminhoFoto;
+
         Animal::create($dados);
+        
         return redirect()->route('admin.animais.index')->with('sucesso', 'Animal cadastrado com sucesso!');
     }
 
@@ -35,16 +48,40 @@ class AdminController extends Controller
         return redirect()->route('admin.animais.index')->with('sucesso', 'Animal removido do sistema.');
     }
 
+    // --- NOVA FUNÇÃO DE ATUALIZAÇÃO ENCAIXADA AQUI ---
+    public function atualizarAnimal(Request $request, $id) {
+        $animal = Animal::findOrFail($id);
+
+        $dados = $request->validate([
+            'nome' => 'required|string|max:255',
+            'especie' => 'required|string',
+            'idade' => 'required|string',
+            'porte' => 'required|string',
+            'descricao' => 'required|string',
+            'foto_url' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+        ]);
+
+        // Se o administrador selecionou uma nova foto, processa o upload
+        if ($request->hasFile('foto_url') && $request->file('foto_url')->isValid()) {
+            $caminhoFoto = $request->file('foto_url')->store('animais', 'public');
+            $dados['foto_url'] = $caminhoFoto;
+        } else {
+            // Se não enviou foto nova, remove o campo do array para manter a foto atual intacta
+            unset($dados['foto_url']);
+        }
+
+        $animal->update($dados);
+
+        return redirect()->route('admin.animais.index')->with('sucesso', 'Informações do pet atualizadas com sucesso!');
+    }
+
 
     // --- FUNÇÕES DA TRIAGEM ---
 
-    /**
-     * Lista as solicitações e calcula os dados do Dashboard
-     */
     public function triagem() {
         $solicitacoes = SolicitacaoAdocao::with(['usuario', 'animal'])->latest()->get();
 
-        // CONTADORES DO DASHBOARD (Novidade)
+        // CONTADORES DO DASHBOARD
         $totalPets = Animal::count();
         $pendentes = SolicitacaoAdocao::where('status', 'pendente')->count();
         $adocoesSucesso = SolicitacaoAdocao::where('status', 'aprovado')->count();

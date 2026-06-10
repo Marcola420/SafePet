@@ -99,7 +99,16 @@
                 <div class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="overflow-hidden relative h-52 bg-gray-100 dark:bg-gray-900">
-                            <img src="{{ $animal->foto_url }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            
+                            {{-- Validação inteligente da imagem --}}
+                            @if($animal->foto_url && (Str::startsWith($animal->foto_url, 'http://') || Str::startsWith($animal->foto_url, 'https://')))
+                                <img src="{{ $animal->foto_url }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Foto de {{ $animal->nome }}">
+                            @elseif($animal->foto_url)
+                                <img src="{{ asset('storage/' . $animal->foto_url) }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Foto de {{ $animal->nome }}">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center text-4xl bg-gray-200 dark:bg-gray-700">🐾</div>
+                            @endif
+
                             <span class="absolute top-3 right-3 bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 text-gray-800 dark:text-gray-200 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
                                 {{ $animal->porte }}
                             </span>

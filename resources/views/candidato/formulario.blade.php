@@ -48,41 +48,68 @@
             </div>
         </div>
 
-        <div>
-            <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200 mb-4 border-b dark:border-gray-700 pb-2 mt-2">🏠 Rotina e Residência</h2>
+        <div class="bg-gray-50 dark:bg-gray-900/50 p-5 rounded-xl border border-gray-200 dark:border-gray-700 transition-colors duration-300">
+            <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200 mb-4 border-b dark:border-gray-700 pb-2">🏠 Rotina e Residência</h2>
             
             <div class="space-y-4">
                 <div>
                     <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Qual é o seu tipo de residência?</label>
-                    <select name="tipo_residencia" required class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white">
-                        <option value="Casa" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Casa com quintal telado/fechado</option>
-                        <option value="Apartamento" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Apartamento com telas de proteção</option>
-                        <option value="Outro" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Outro tipo de residência</option>
+                    <select name="tipo_residencia" required class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <option value="Casa com quintal telado/fechado" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Casa com quintal telado/fechado</option>
+                        <option value="Casa sem quintal ou sem portões fechados" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Casa sem quintal ou sem portões fechados</option>
+                        <option value="Apartamento com tela de proteção" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Apartamento com telas de proteção</option>
+                        <option value="Apartamento sem tela de proteção" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Apartamento sem tela de proteção</option>
                     </select>
                 </div>
 
                 <div>
                     <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Em média, quantas horas por dia o pet ficará sozinho em casa?</label>
-                    <select name="tempo_sozinho" required class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white">
+                    <select name="tempo_sozinho" required class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none">
                         <option value="Menos de 2 horas" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Menos de 2 horas</option>
-                        <option value="De 2 a 6 horas" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">De 2 a 6 horas</option>
+                        <option value="De 2 a 5 horas" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">De 2 a 5 horas</option>
                         <option value="Mais de 6 horas" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Mais de 6 horas</option>
                     </select>
                 </div>
 
                 <div>
                     <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Você possui outros animais de estimação atualmente?</label>
-                    <select name="tem_outros_pets" required class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white">
-                        <option value="Não" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Não possuo outros pets</option>
-                        <option value="Sim, Gato(s)" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Sim, possuo gato(s)</option>
-                        <option value="Sim, Cachorro(s)" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Sim, possuo cachorro(s)</option>
-                        <option value="Sim, Outros" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Sim, outros animais</option>
+                    <select name="outros_pets" required class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <option value="Não possuo outros pets" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Não possuo outros pets</option>
+                        <option value="Sim, possuo cão(s)" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Sim, possuo cão(s)</option>
+                        <option value="Sim, possuo gato(s)" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Sim, possuo gato(s)</option>
+                        <option value="Sim, possuo cão e gato" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Sim, possuo cão e gato</option>
                     </select>
                 </div>
 
                 <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Todos os moradores da residência estão de acordo com a adoção?</label>
+                    <select name="concordancia_casa" required class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <option value="Sim, todos estão cientes e de acordo" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Sim, todos estão cientes e de acordo</option>
+                        <option value="Não, alguns ainda têm dúvidas ou não sabem" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Não, alguns ainda têm dúvidas ou não sabem</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Está ciente e seguro de que terá condições de arcar com os custos do pet?</label>
+                    <select name="consciencia_financeira" required class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <option value="Sim, compreendo perfeitamente os custos de um animal" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Sim, compreendo perfeitamente os custos de um animal</option>
+                        <option value="Tenho receio sobre custos médicos elevados" class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">Tenho receio sobre custos médicos elevados</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Caso precise viajar ou se mudar de residência, o que pretende fazer com o pet?</label>
+                    <textarea name="plano_viagem" rows="2" required placeholder="Ex: Deixarei em hotelzinho, com parentes ou levarei comigo na mudança..." class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400 dark:placeholder-gray-500"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Como pretende reagir caso o pet chore, morda objetos ou urine no lugar errado?</label>
+                    <textarea name="comportamento_animal" rows="2" required placeholder="Descreva brevemente como pretende lidar com o período de adaptação e educação do pet..." class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400 dark:placeholder-gray-500"></textarea>
+                </div>
+
+                <div>
                     <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-1">Justifique por que você deseja adotar este animal e descreva sua rotina:</label>
-                    <textarea name="motivo_adocao" rows="3" required minlength="10" placeholder="Insira no mínimo 10 caracteres detalhando suas motivações..." class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                    <textarea name="descricao" rows="3" required minlength="10" placeholder="Insira no mínimo 10 caracteres detalhando suas motivações..." class="w-full border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg p-2.5 text-gray-900 dark:!text-white focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400 dark:placeholder-gray-500"></textarea>
                 </div>
             </div>
         </div>
@@ -117,7 +144,6 @@
                     document.getElementById('cidade').value = data.localidade;
                     document.getElementById('uf').value = data.uf;
                     
-                    // Joga o foco pro usuário digitar o número da casa
                     document.getElementById('numero').focus();
                 } else {
                     alert('CEP não encontrado! Verifique o número digitado.');

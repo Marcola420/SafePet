@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
+Route::put('/admin/animais/atualizar/{id}', [AdminController::class, 'atualizarAnimal'])->name('admin.animais.atualizar');
 
 //página de Política de Privacidade
 Route::get('/politica-de-privacidade', function () {

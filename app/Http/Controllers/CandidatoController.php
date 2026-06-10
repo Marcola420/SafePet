@@ -47,7 +47,12 @@ class CandidatoController extends Controller
             'tempo_sozinho' => 'required|string',
             'tem_outros_pets' => 'required|string',
             'motivo_adocao' => 'required|string|min:10',
-        ]);
+            'concordancia_casa' => 'required|string',         
+            'consciencia_financeira' => 'required|string',    
+             'plano_viagem' => 'required|string',              
+             'comportamento_animal' => 'required|string',        
+        
+            ]);
 
         // Cria a solicitação pendente de análise
         SolicitacaoAdocao::create([

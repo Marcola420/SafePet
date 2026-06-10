@@ -4,7 +4,16 @@
 <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 max-w-4xl mx-auto mt-6 transition-colors duration-300">
     <div class="md:flex">
         <div class="md:w-1/2">
-            <img class="h-full w-full object-cover min-h-[350px]" src="{{ $animal->foto_url ?? 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=500' }}" alt="{{ $animal->nome }}">
+            
+            {{-- ALTERAÇÃO REALIZADA: Lógica dinâmica para carregar a imagem na tela de detalhes --}}
+            @if($animal->foto_url && (Str::startsWith($animal->foto_url, 'http://') || Str::startsWith($animal->foto_url, 'https://')))
+                <img class="h-full w-full object-cover min-h-[350px]" src="{{ $animal->foto_url }}" alt="{{ $animal->nome }}">
+            @elseif($animal->foto_url)
+                <img class="h-full w-full object-cover min-h-[350px]" src="{{ asset('storage/' . $animal->foto_url) }}" alt="{{ $animal->nome }}">
+            @else
+                <div class="h-full w-full min-h-[350px] bg-gray-100 dark:bg-gray-900 flex items-center justify-center text-5xl">🐾</div>
+            @endif
+
         </div>
         
         <div class="p-8 md:w-1/2 flex flex-col justify-between">
