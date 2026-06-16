@@ -4,10 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-
-\Illuminate\Support\Facades\Gate::define('access-admin', function ($user) {
-    return $user->eAdmin();
-});
+use Illuminate\Support\Facades\Gate;
 
 
 
@@ -26,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+    Gate::define('access-admin', function ($user) {
+    return $user->eAdmin();
+    });
     }
 }
